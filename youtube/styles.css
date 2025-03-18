@@ -1,0 +1,167 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #181818;
+    padding: 10px;
+}
+
+.logo {
+    width: 100px;
+    margin-left: 30px;
+}
+.menu-icon{
+    size: 10px;
+}
+
+.search-bar {
+    flex: 1;
+    margin: 0 6px;
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    background-color: black;
+    margin-left: 200px;
+    size: 10px;
+    margin-right: 1000px;
+}
+
+.profile-icon {
+    width: 35px;
+    height: 35px;
+    background: red;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 60px;
+    height: 80vh;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 0;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.sidebar li:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
+    margin-bottom: 5px;
+}
+
+.sidebar span {
+    font-size: 12px;
+    color: white;
+}
+
+/* Navigation Bar */
+.nav-bar {
+    display: flex;
+    overflow-x: auto;
+    background: #222;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.nav-item {
+    padding: 8px 15px;
+    background: #333;
+    color: white;
+    border-radius: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.nav-item.active {
+    background: white;
+    color: black;
+}
+
+/* Video Grid */
+.video-grid {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    flex-wrap: wrap;
+    margin-left: 100px;
+}
+
+.p{
+    font-size: 6px;
+}
+.video-grid img {
+    width: 200px 100px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+    padding: 3px;
+}
+
+.video-grid img:hover {
+    transform: scale(1.05);
+}
+
+/* Hide all video links initially */
+.video-link .link {
+    display: none;
+    padding: 15px;
+    font-size: 18px;
+    color: #00aaff;
+}
+
+/* Show specific video link when corresponding radio is checked */
+#video-1:checked ~ .video-link #link-1 {
+    display: block;
+}
+
+#video-2:checked ~ .video-link #link-2 {
+    display: block;
+}
+
+#video-3:checked ~ .video-link #link-3 {
+    display: block;
+}
+
+#video-4:checked ~ .video-link #link-4 {
+    display: block;
+}

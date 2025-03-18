@@ -1,0 +1,65 @@
+pipeline{
+    agent any
+    tools{
+        nodejs 'NodeJS 14.17.0' // update the nodejs version
+    }
+    environment {
+        FRONTEND_DIR =  'client' //update folder name
+        BACKEND_DIR  = 'server' //update folder name
+        BUILD_DIR = 'build' // update folder name
+        REOP_URL = '   ' // mention git url 
+        BRANCH = 'main'
+    }
+    
+    stages{
+        stage('Clean Workspace'){
+            steps{
+                cleanWs()
+                
+            }
+        }
+            
+        stage('Checkout from Git'){
+            steps{
+                git branch: 'main', url: '   ', creditonalsId = 'GIT'  // update the url and git creditionals in jenkins pipeline and add in git credential with a key .
+            }
+        }
+        
+        stage('Install Dependencies'){
+            steps{
+                dir(FRONTEND_DIR){
+                    sh 'npm install'
+                }
+            }
+        }
+        
+        stage('NPM Build'){
+            steps{
+                dir(FRONTEND_DIR){
+                    sh 'npm run build'
+                }
+            }
+        }
+        
+        stage('Move Build Output'){
+            steps{
+                sh 'mv frontend/build/* target_folder/'  //update the folder names 
+            }
+        }
+        
+        stage('Run Backend'){
+            steps{
+                dir(BACKEND_DIR){
+                    sh ' commans to be executed'
+                }
+            }
+        }
+        post{
+            always{
+                echo 'Pipeline execution complete both frontend and backend works fine '
+            }
+        }
+        
+    }
+    
+}

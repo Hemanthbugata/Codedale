@@ -1,0 +1,92 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 10;
+    padding: 10;
+    overflow-x: hidden;
+  }
+  
+  /* Navbar (Header) Styling */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 30px 40px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: fixed;
+  }
+  
+  /* Logo Styling */
+  .header .logo {
+    font-size: 20px;
+    font-weight: inherit;
+    color: #151515;
+    margin-left: 120px; 
+  }
+  
+  .header .logo span {
+    color: rgb(10, 9, 9);
+  }
+  
+  /* Search Bar Styling */
+  .header .search-bar input {
+    width: 400px;
+    padding: 8px 15px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-right: 320px; 
+  }
+  
+  /* Location and Sign-In Styling */
+  .header .location-signin {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header .location-signin select {
+    padding: 5px 10px;
+    border-radius: 0px;
+    border: 1px solid #ddd;
+    margin-right: 300px;
+  }
+  
+  .header .signin-btn {
+    background-color: #f44e37;
+    color: white;
+    padding: 3px 10px; 
+    border-radius: 4px;
+    text-decoration: rgb(192, 186, 195);
+    margin-left: 200px;
+  }
+  
+  /* Menu Icon */
+  .header .menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  /* Background Image Section Styling */
+  .image-container {
+    margin-top: 100px; /* Adjust based on navbar height */
+    height: 80vh; /* Full viewport height */
+    position: relative; /* Adjust based on navbar height */
+  }
+  
+  .image-container img {
+    width: 80%;
+    height: 80%;
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+  }
+  
+  /* About Section Styling */
+  .about-movie h2 { 
+    padding: 20px;
+    margin-left: 50px;
+  }
+  
+  .about-movie p {
+    padding: 0px; 
+    margin-left: 50px;
+  }
+  

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #2193b0, #6dd5ed);
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e68900;
+        }
+        .weather-info {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: inline-block;
+            text-align: center;
+        }
+        .weather-info img {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌤 Weather App</h1>
+        <input type="text" id="cityInput" placeholder="Enter city name">
+        <button onclick="getWeather()">Get Weather</button>
+        <div class="weather-info" id="weatherInfo"></div>
+    </div>
+
+    <script>
+        async function getWeather() {
+            const city = document.getElementById('cityInput').value.trim();
+
+            if (!city) {
+                alert("Please enter a city name");
+                return;
+            }
+
+            try {
+                const response = await fetch(`/weather?city=${city}`);
+                const data = await response.json();
+
+                const weatherDiv = document.getElementById('weatherInfo');
+                if (data.error) {
+                    weatherDiv.innerHTML = `<p>${data.error}</p>`;
+                } else {
+                    weatherDiv.innerHTML = `
+                        <h2>${data.city}</h2>
+                        <p>Temperature: ${data.temperature}°C</p>
+                        <p>Description: ${data.description}</p>
+                        <img src="http://openweathermap.org/img/wn/${data.icon}@2x.png" alt="Weather Icon">
+                    `;
+                }
+            } catch (error) {
+                alert("Error fetching weather data. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>

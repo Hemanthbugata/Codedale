@@ -6,7 +6,7 @@ function printHollowpyramid(n){
             if (j === 1 || j === i || i === n) {
                 row += j + " ";
             } else {
-                row += "  "; 
+                row += "  c"; 
             }
         }
               console.log(row);

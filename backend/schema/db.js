@@ -1,26 +1,18 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-
 dotenv.config();
 
-const { Schema } = mongoose;
+const Schema = mongoose.Schema;
 
-// Chat Schema
-const ChatsSchema = new Schema(
-  {
-    message: { type: String, required: true },
-  },
-  { timestamps: true } // adds createdAt and updatedAt
-);
+const Chats = new Schema({
+    message : String,
+});
+export const ChatsModel = mongoose.model("chats", Chats);
 
-export const ChatsModel = mongoose.model("Chat", ChatsSchema);
-
-// Proposal Schema
-const ProposalsSchema = new Schema(
-  {
-    message: { type: String, required: true },
-  },
-  { timestamps: true }
-);
-
-export const ProposalsModel = mongoose.model("Proposal", ProposalsSchema);
+const Proposals = new Schema({
+    message: String,
+    response: String, 
+  });
+  
+  export const ProposalsModel = mongoose.model("proposals", Proposals);
+  

@@ -6,15 +6,15 @@ This is a backend API built with Node.js, Express.js, MongoDB, and Mongoose to m
 
 Clone the Repository
 
-```
-git clone https://github.com/hemanthbugata/codedale.git
-cd student-api
+  git clone https://github.com/hemanthbugata/codedale.git
+  cd student-api
 
-```
 
 Install Dependencies
 
-npm install
+```bash
+npm install express mongoose dotenv
+```
 
 Set up Environment Variables
 

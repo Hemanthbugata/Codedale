@@ -34,3 +34,7 @@ node server.js
 ```
 
 The server will run at: http://localhost:3000
+
+Data Uploaded in MongoDB By API End Points :
+
+  ![image](https://github.com/user-attachments/assets/661c5c76-83c2-4c51-a020-07b4a5aa1abc)

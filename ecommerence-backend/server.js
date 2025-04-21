@@ -9,6 +9,8 @@ const productRouter = require('./routes/product');
 const categoryRouter = require('./routes/category');
 const cartRouter = require('./routes/cart');
 const orderRouter = require('./routes/order');
+const paymentRouter = require('./routes/payment');
+const reviewRouter = require('./routes/review');
 
 const app = express();
 
@@ -24,6 +26,8 @@ app.use('/api', productRouter);
 app.use('/api', categoryRouter);
 app.use('/api', cartRouter);
 app.use('/api', orderRouter);
+app.use('/api', paymentRouter);
+app.use('/api', reviewRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

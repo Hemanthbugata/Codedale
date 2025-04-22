@@ -141,3 +141,209 @@ JWT_SECRET=your_jwt_secret_key
 | GET    | `/api/user/:id/purchase-history` | Get purchase history of a user |
 
 ---
+
+
+## 📘 API Routes: Explanation with Parameters, Responses & Auth Requirements
+
+---
+
+### 🔐 Auth & User
+
+#### 1. POST `/api/register` *(Public)*
+- **Body:**
+```json
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "123456",
+  "role": "user",
+  "address": {
+    "street": "123 Main St",
+    "city": "New York",
+    "state": "NY",
+    "pincode": "10001",
+    "country": "USA"
+  }
+}
+```
+- **Response:** User registered
+
+#### 2. POST `/api/login` *(Public)*
+- **Body:**
+```json
+{
+  "email": "john@example.com",
+  "password": "123456"
+}
+```
+- **Response:** JWT token + user info
+
+#### 3. GET `/api/users` *(Admin Token Required)*
+- **Header:** `Authorization: Bearer <admin-token>`
+- **Response:** List of all users
+
+#### 4. GET `/api/users/:id` *(User/Admin Token Required)*
+- **Header:** `Authorization: Bearer <token>`
+- **Response:** User profile
+
+#### 5. PUT `/api/users/:id` *(User/Admin Token Required)*
+- **Header:** `Authorization: Bearer <token>`
+- **Body:**
+```json
+{
+  "name": "Updated Name",
+  "email": "updated@example.com"
+}
+```
+- **Response:** Updated user
+
+#### 6. DELETE `/api/users/:id` *(Admin Token Required)*
+- **Header:** `Authorization: Bearer <admin-token>`
+- **Response:** Deletion message
+
+#### 7. PUT `/api/users/:id/role` *(Admin Token Required)*
+- **Header:** `Authorization: Bearer <admin-token>`
+- **Body:**
+```json
+{ "role": "admin" }
+```
+
+#### 8. GET `/api/users/:id/address` *(User/Admin Token Required)*
+- **Header:** `Authorization: Bearer <token>`
+- **Response:** Address data
+
+---
+
+### 🛍️ Product
+
+#### 1. POST `/api/products` *(Admin Token Required)*
+- **Header:** `Authorization: Bearer <admin-token>`
+- **Body:** Product details
+
+#### 2. GET `/api/products` *(Public)*
+- **Response:** List of products
+
+#### 3. GET `/api/products/:id` *(Public)*
+- **Response:** Single product
+
+#### 4. PUT `/api/products/:id` *(Admin Token Required)*
+- **Header:** `Authorization: Bearer <admin-token>`
+- **Body:** Updated fields
+
+#### 5. DELETE `/api/products/:id` *(Admin Token Required)*
+- **Header:** `Authorization: Bearer <admin-token>`
+
+#### 6. GET `/api/products/category/:categoryId` *(Public)*
+
+#### 7. GET `/api/products/brand/:brandName` *(Public)*
+
+#### 8. PUT `/api/products/:id/stock` *(Admin Token Required)*
+- **Header:** `Authorization: Bearer <admin-token>`
+- **Body:** `{ "stock": 30 }`
+
+---
+
+### 🧾 Category
+
+#### 1. POST `/api/categories` *(Admin Token Required)*
+- **Header:** `Authorization: Bearer <admin-token>`
+- **Body:** `{ "name": "Clothing" }`
+
+#### 2. GET `/api/categories` *(Public)*
+
+#### 3. GET `/api/categories/:id` *(Public)*
+
+#### 4. PUT `/api/categories/:id` *(Admin Token Required)*
+- **Header:** `Authorization: Bearer <admin-token>`
+
+#### 5. DELETE `/api/categories/:id` *(Admin Token Required)*
+- **Header:** `Authorization: Bearer <admin-token>`
+
+---
+
+### 🛒 Cart
+
+#### 1. POST `/api/cart/add` *(User Token Required)*
+- **Header:** `Authorization: Bearer <user-token>`
+- **Body:** `{ "productId": "...", "quantity": 2 }`
+
+#### 2. DELETE `/api/cart/remove/:productId` *(User Token Required)*
+- **Header:** `Authorization: Bearer <user-token>`
+
+#### 3. PUT `/api/cart/update/:productId` *(User Token Required)*
+- **Header:** `Authorization: Bearer <user-token>`
+- **Body:** `{ "quantity": 3 }`
+
+#### 4. GET `/api/cart` *(User Token Required)*
+
+#### 5. DELETE `/api/cart/clear` *(User Token Required)*
+
+#### 6. PUT `/api/cart/total/:userId` *(Admin/User Token Required)*
+
+---
+
+### 📦 Order
+
+#### 1. POST `/api/orders` *(User Token Required)*
+- **Header:** `Authorization: Bearer <user-token>`
+
+#### 2. GET `/api/orders` *(Admin Token Required)*
+- **Header:** `Authorization: Bearer <admin-token>`
+
+#### 3. GET `/api/orders/user/:userId` *(User/Admin Token Required)*
+
+#### 4. GET `/api/orders/:orderId` *(User/Admin Token Required)*
+
+#### 5. PUT `/api/orders/:orderId/status` *(Admin Token Required)*
+- **Header:** `Authorization: Bearer <admin-token>`
+
+#### 6. DELETE `/api/orders/:orderId` *(User/Admin Token Required)*
+
+#### 7. PUT `/api/orders/:orderId/address` *(User/Admin Token Required)*
+
+#### 8. GET `/api/orders/:orderId/track` *(User Token Required)*
+
+---
+
+### 💳 Payment
+
+#### 1. POST `/api/payments` *(User Token Required)*
+- **Header:** `Authorization: Bearer <user-token>`
+
+#### 2. GET `/api/payments/:id` *(User/Admin Token Required)*
+
+#### 3. GET `/api/payments/order/:orderId` *(User/Admin Token Required)*
+
+#### 4. PUT `/api/payments/:id` *(Admin Token Required)*
+- **Header:** `Authorization: Bearer <admin-token>`
+
+#### 5. DELETE `/api/payments/:id` *(Admin Token Required)*
+
+---
+
+### 🌟 Review
+
+#### 1. POST `/api/reviews` *(User Token Required)*
+
+#### 2. GET `/api/reviews/product/:productId` *(Public)*
+
+#### 3. GET `/api/reviews/user/:userId` *(User/Admin Token Required)*
+
+#### 4. PUT `/api/reviews/:reviewId` *(User/Admin Token Required)*
+
+#### 5. DELETE `/api/reviews/:reviewId` *(User/Admin Token Required)*
+
+---
+
+### 🔍 Search & Filters
+
+#### 1. GET `/api/search?query=` *(Public)*
+
+#### 2. GET `/api/products/sort/:type` *(Public)*
+
+#### 3. GET `/api/products/low-stock` *(Admin Token Required)*
+
+#### 4. GET `/api/stats/dashboard` *(Admin Token Required)*
+
+#### 5. GET `/api/user/:id/purchase-history` *(User/Admin Token Required)*
+
